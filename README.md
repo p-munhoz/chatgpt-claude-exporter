@@ -6,6 +6,8 @@ Chrome/Chromium browsers.
 
 ![Export popup](screenshots/popup.png)
 
+**[Download the latest release](https://github.com/p-munhoz/chatgpt-claude-exporter/releases/latest)**
+
 ## Features
 
 - **4 export formats**: Markdown (plain `.md`, or a `.zip` with an `images/` folder if
@@ -22,17 +24,29 @@ Chrome/Chromium browsers.
 
 ## Install
 
-### Firefox / Zen
+### Firefox / Zen (permanent — recommended)
 
-1. `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on…**
-2. Pick `manifest.json` in the repo root (or `dist/firefox/manifest.json`).
+1. Download the `.xpi` from [Releases](https://github.com/p-munhoz/chatgpt-claude-exporter/releases/latest).
+2. Drag it into a Firefox/Zen window (or open it directly). Confirm the install prompt.
 
-For a permanent install (survives restarting the browser), see [Build & package](#build--package).
+It's signed by Mozilla, so no Developer mode or `about:config` changes needed, and it
+survives restarting the browser.
 
 ### Chrome / Edge / Brave
 
-1. `chrome://extensions` → enable **Developer mode**.
-2. **Load unpacked** → select the `dist/chrome/` folder.
+1. Download and unzip the Chrome `.zip` from [Releases](https://github.com/p-munhoz/chatgpt-claude-exporter/releases/latest).
+2. `chrome://extensions` → enable **Developer mode**.
+3. **Load unpacked** → select the unzipped folder.
+
+Chrome keeps unpacked extensions installed across restarts as long as Developer mode
+stays on and the folder isn't moved or deleted — there's no separate "permanent" step.
+A Chrome Web Store listing (no Developer mode needed) would need a one-time $5 Google
+developer fee and their review process.
+
+### Firefox / Zen (temporary, for development)
+
+1. `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on…**
+2. Pick `manifest.json` in the repo root (or `dist/firefox/manifest.json`).
 
 After editing code in either browser: reload the extension **and** hard-reload the
 ChatGPT/Claude tab (reloading the extension alone does not re-inject content scripts
