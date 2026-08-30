@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT & Claude Conversation Exporter",
+  "version": "0.3.1",
+  "description": "Export the ChatGPT or Claude conversation you are viewing to Markdown, HTML, JSON, or plain text — images included.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "chatgpt-claude-exporter@grumpy.local",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": { "required": ["none"] }
+    }
+  },
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*"
+  ],
+  "action": {
+    "default_title": "Export conversation",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*", "https://claude.ai/*"],
+      "js": ["lib/jszip.min.js", "lib/marked.min.js", "formatters.js", "src/content-export.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*", "https://claude.ai/*"],
+      "js": ["src/content-main.js"],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ]
+}

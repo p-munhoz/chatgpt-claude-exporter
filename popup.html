@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <h1>Export conversation</h1>
+
+  <p id="context" class="muted">Checking current tab…</p>
+
+  <fieldset id="formats">
+    <legend>Formats</legend>
+    <label><input type="checkbox" value="md" checked /> Markdown <span class="muted">(.md, or .zip if it has images)</span></label>
+    <label><input type="checkbox" value="html" checked /> HTML <span class="muted">(single file, images embedded)</span></label>
+    <label><input type="checkbox" value="json" /> JSON <span class="muted">(raw data)</span></label>
+    <label><input type="checkbox" value="txt" /> Plain text</label>
+  </fieldset>
+
+  <fieldset id="imgopts">
+    <legend>Images</legend>
+    <label><input type="checkbox" id="opt-images" checked /> Include images</label>
+    <label>Compression
+      <select id="opt-compress">
+        <option value="off">Off (original files)</option>
+        <option value="light">Light — 2048px, WebP q0.82</option>
+        <option value="medium" selected>Medium — 1600px, WebP q0.7</option>
+        <option value="strong">Strong — 1200px, WebP q0.55</option>
+      </select>
+    </label>
+  </fieldset>
+
+  <button id="export" disabled>Export</button>
+
+  <p id="status" class="muted"></p>
+
+  <script src="popup.js"></script>
+</body>
+</html>
